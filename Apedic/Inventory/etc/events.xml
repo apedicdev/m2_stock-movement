@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="cataloginventory_stock_item_save_after">
+        <observer name="catalog_inventory_save" instance="Apedic\Inventory\Observer\CatalogInventorySave" />
+</event>
+    <event name="checkout_submit_all_after">
+        <observer name="checkout_submit_all_after" instance="Apedic\Inventory\Observer\CheckoutSubmitAllAfter" />
+    </event>
+    <event name="cataloginventory_stock_revert_products_sale">
+        <observer name="catalog_inventory_save" instance="Apedic\Inventory\Observer\CatalogInventoryStockRevertProductsSale" />
+    </event>
+    <event name="sales_order_item_cancel">
+        <observer name="catalog_inventory_save" instance="Apedic\Inventory\Observer\SalesOrderItemCancel" />
+    </event>
+</config>

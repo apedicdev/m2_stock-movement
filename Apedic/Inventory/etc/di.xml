@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <virtualType name="InventoryGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Apedic\Inventory\Model\ResourceModel\Inventory\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">InventoryGridDataProviderFilterPool</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="InventoryGridDataProviderFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+    <arguments>
+        <argument name="appliers" xsi:type="array">
+            <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+            <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+        </argument>
+    </arguments>
+    </virtualType>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+    <arguments>
+        <argument name="collections" xsi:type="array">
+            <item name="inventory_listing_data_source" xsi:type="string">Apedic\Inventory\Model\ResourceModel\Grid\Inventory\Collection</item>
+        </argument>
+    </arguments>
+    </type>
+
+    <virtualType name="Apedic\Inventory\Model\ResourceModel\Grid\Inventory\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+    <arguments>
+        <argument name="mainTable" xsi:type="string">apedic_inventory</argument>
+        <argument name="resourceModel" xsi:type="string">Apedic\Inventory\Model\ResourceModel\Inventory</argument>
+    </arguments>
+    </virtualType>
+
+
+</config>
